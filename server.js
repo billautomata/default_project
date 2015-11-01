@@ -9,15 +9,15 @@ var fs = require('fs'),
 var port = 8000;
 
 var options = {
-    key: fs.readFileSync('./nginx.key'),
-    cert: fs.readFileSync('./nginx.crt'),
-    requestCert: false,
-    rejectUnauthorized: false
+    // key: fs.readFileSync('./nginx.key'),
+    // cert: fs.readFileSync('./nginx.crt'),
+    // requestCert: false,
+    // rejectUnauthorized: false
 };
 
 var app = express();
 
-var server = https.createServer(options, app).listen(port, function(){
+var server = http.createServer(app).listen(port, function(){
   console.log("Express server listening on port " + port);
 });
 
