@@ -9,17 +9,31 @@ var fs = require('fs'),
 var port = 8000;
 
 var options = {
-    // key: fs.readFileSync('./nginx.key'),
-    // cert: fs.readFileSync('./nginx.crt'),
-    // requestCert: false,
-    // rejectUnauthorized: false
+  key: fs.readFileSync('./nginx.key'),
+  cert: fs.readFileSync('./nginx.crt'),
+  requestCert: false,
+  rejectUnauthorized: false
 };
 
 var app = express();
 
-var server = http.createServer(app).listen(port, function(){
-  console.log("Express server listening on port " + port);
-});
+var server
+
+// console.log(process.env)
+
+if(process.env.HTTPS && process.env.HTTPS === '1'){
+  server = http.createServer(app, options).listen(port, function(){
+    console.log("Express _SECURE_ server listening on port " + port);
+  });
+} else {
+  server = http.createServer(app).listen(port, function(){
+    console.log("Express server listening on port " + port);
+  });
+}
+//
+// var server = http.createServer(app).listen(port, function(){
+//   console.log("Express server listening on port " + port);
+// });
 
 // app.get('/', function (req, res) {
 //     res.writeHead(200);

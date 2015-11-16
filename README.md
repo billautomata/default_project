@@ -1,5 +1,11 @@
-# javascript computer vision https livereload + browserify
+# default project
 
-run `npm install` to install dependencies
+`npm install`
 
-run the server `npm start; npm run livereload`.
+`npm run create_keys`
+
+`npm run https`
+
+or
+
+`npm run http`
